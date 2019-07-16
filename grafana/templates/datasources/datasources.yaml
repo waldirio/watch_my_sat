@@ -12,7 +12,7 @@ datasources:
   editable: true
   isDefault: false
   jsonData:
-    postgresVersion: 9.5
+    postgresVersion: $PSQL_VERSION
     sslmode: disable
     timescaledb: true
   name: foreman
@@ -20,3 +20,17 @@ datasources:
   type: postgres
   url: $PGSQL_FOREMAN_HOST:$PGSQL_FOREMAN_PORT
   user: $PGSQL_FOREMAN_USER
+
+- access: proxy
+  database: candlepin
+  editable: true
+  isDefault: false
+  jsonData:
+    postgresVersion: $PGSQL_VERSION
+    sslmode: disable
+    timescaledb: true
+  name: candlepin
+  password: $PGSQL_CANDLEPIN_PASSWORD
+  type: postgres
+  url: $PGSQL_CANDLEPIN_HOST:$PGSQL_CANDLEPIN_PORT
+  user: $PGSQL_CANDLEPIN_USER

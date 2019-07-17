@@ -1,0 +1,11 @@
+[Unit]
+Description=MongoDB Exporter
+
+[Service]
+User=root
+EnvironmentFile=/etc/sysconfig/mongodb_exporter
+ExecStart=/root/go/src/github.com/dcu/mongodb_exporter/mongodb_exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

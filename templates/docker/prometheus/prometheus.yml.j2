@@ -37,8 +37,12 @@ scrape_configs:
     scheme: http
     static_configs:
     - targets:
-      - {{ satellite_server }}:9187
+      - {{ satellite_server }}:{{ postgres_exporter_port }}
 
   - job_name: 'node_exporter'
     static_configs:
     - targets: ['{{ satellite_server }}:{{ prometheus_node_exporter_port }}']
+
+  - job_name: 'mongodb_exporter'
+    static_configs:
+    - targets: ['{{ satellite_server }}:{{ mongodb_exporter_port }}']

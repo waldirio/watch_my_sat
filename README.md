@@ -1,37 +1,10 @@
-# Create WatchMySat pod
-podman pod create --name watch_my_sat -p 3000 -p 9090
+# WatchMySat
+- Configure a password the postgres user to connect via localhost
+`echo "alter user postgres with password 'password';" | su - postgres -c psql`
 
-# Grafana
-# access http://localhost:3000
-podman run -d --pod watch_my_sat \
-    --name grafana \
-    --env-file variables.env \
-    tchellomello/grafana:latest
-
-# Prometheus
-# access http://localhost:9090
-podman run -d --pod watch_my_sat \
-    --name prometheus \
-    --env-file variables.env \
-    tchellomello/prometheus:latest
-
-# Prometheus PostgreSQL Exporter
-podman run -d --pod watch_my_sat \
-    --name postgresql_exporter \
-    --env-file variables.env \
-    wrouesnel/postgres_exporter
-
-# MongoDB Exporter
-podman run -d --pod watch_my_sat \
-    --name mongodb_exporter \
-    --env-file variables.env \
-    tchellomello/mongodb_exporter
-
-<!-- # saving config
-podman generate kube watch_my_sat > watch_my_sat.yaml
-
-# running config
-podman play kube watch_my_sat.yaml -->
-
-# tear down
-podman pod rm watch_my_sat -f
+- Configure the `postgres_exporter_password` at `watch_my_sat.variables`
+- Configure the `inventory` file
+- Run playbook to prepare the environment
+`ansible-playbook prepare.yml`
+- Start containers with docker
+`docker-compose up`

@@ -1,0 +1,56 @@
+- name: Install Golang package
+  package:
+    name: golang-bin
+    state: present
+  tags:
+    - watchmysat_postgres_exporter
+
+- name: Download Go Magefile
+  shell: go get -u -d {{ magefile_url }}
+  tags:
+    - watchmysat_postgres_exporter
+
+- name: Install Go Magefile
+  shell: go run bootstrap.go
+  args:
+    chdir: "{{ gopath }}/src/{{ magefile_url }}"
+  tags:
+    - watchmysat_postgres_exporter
+
+- name: Download Postgres Exporter
+  shell: go get {{ postgres_exporter_url }}
+  register: go_get_postgres_exporter
+  ignore_errors: True
+  no_log: True
+  tags:
+    - watchmysat_postgres_exporter
+
+- name: Install Postgres Exporter
+  shell: go run mage.go binary
+  args:
+    chdir: "{{ gopath }}/src/{{ postgres_exporter_url }}"
+  tags:
+    - watchmysat_postgres_exporter
+
+- name: Deploy Postgres Exporter systemd service
+  template:
+    src: templates/postgres_exporter.service.j2
+    dest: /usr/lib/systemd/system/postgres_exporter.service
+  tags:
+    - watchmysat_postgres_exporter
+
+- name: Deploy Postgres Exporter systemd enviroment files
+  template:
+    src: templates/postgres_exporter.j2
+    dest: /etc/sysconfig/postgres_exporter
+  tags:
+    - watchmysat_postgres_exporter
+
+- name: Enable Postgres Exporter
+  systemd:
+    state: restarted
+    name: postgres_exporter
+    enabled: yes
+    daemon_reload: yes
+  tags:
+    - watchmysat_postgres_exporter

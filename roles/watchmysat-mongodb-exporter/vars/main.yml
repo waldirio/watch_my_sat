@@ -1,0 +1,4 @@
+---
+gopath: /root/go
+mongodb_exporter_url: github.com/dcu/mongodb_exporter
+mongodb_exporter_port: 9001

@@ -9,6 +9,11 @@ prometheus_node_exporter_port: 9100
 # Grafana Admin Password
 grafana_admin_password: secret
 
+# Postgres Exporter
+#postgres_exporter_login: postgres
+#postgres_exporter_password: password
+#postgres_exporter_port: 9187
+
 
 ############################################
 # PostgreSQL Foreman credentials
@@ -24,15 +29,3 @@ pgsql_candlepin_port: 5432
 pgsql_candlepin_database: candlepin
 pgsql_candlepin_user: watch_my_sat_candlepin
 pgsql_candlepin_password: secret
-
-## Prometheus PostgreSQL Exporter
-prometheus_pgsql_user: postgres
-prometheus_pgsql_password: secret
-prometheus_pgsql_host: 192.168.1.1
-prometheus_pgsql_port: 5432
-
-## Prometheus MongoDB Exporter
-prometheus_mongodb_user: mongodb_exporter
-prometheus_mongodb_password: secret
-prometheus_mongodb_host: 192.168.1.1
-prometheus_mongodb_port: 27017

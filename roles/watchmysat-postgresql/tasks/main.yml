@@ -1,0 +1,10 @@
+---
+- name: Connect to {{ pgsql_foreman_database }}, create {{ pgsql_foreman_user }}, and grant access to database
+  postgresql_user:
+    db: "{{ pgsql_foreman_database }}"
+    name: "{{ pgsql_foreman_user }}"
+    password: "{{ pgsql_foreman_password }}"
+    priv: "CONNECT/{{ pgsql_foreman_database }}:ALL"
+    login_unix_socket: /tmp
+  tags:
+    - watchmysat_postgresql

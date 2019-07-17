@@ -1,0 +1,8 @@
+---
+- name: Verify Connectivity
+  hosts: satellite
+  gather_facts: no
+  tasks:
+    - name: "Test connectivity to Satellite server"
+      shell: "whoami"
+      changed_when: false

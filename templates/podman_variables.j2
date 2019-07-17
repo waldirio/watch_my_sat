@@ -1,0 +1,21 @@
+# Grafana
+GF_SECURITY_ADMIN_PASSWORD=secret
+GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+
+# PostgreSQL
+PGSQL_VERSION="905"
+PGSQL_FOREMAN_USER={{ pgsql_foreman_user }}
+PGSQL_FOREMAN_PASSWORD={{ pgsql_foreman_password }}
+PGSQL_FOREMAN_HOST={{ pgsql_foreman_host }}
+PGSQL_FOREMAN_PORT={{ pgsql_foreman_port }}
+
+PGSQL_CANDLEPIN_USER={{ pgsql_candlepin_user }}
+PGSQL_CANDLEPIN_PASSWORD={{ pgsql_candlepin_password }}
+PGSQL_CANDLEPIN_HOST={{ pgsql_candlepin_host }}
+PGSQL_CANDLEPIN_PORT={{ pgsql_candlepin_port }}
+
+# Prometheus PostgreSQL Exporter
+DATA_SOURCE_NAME=postgresql://{{ prometheus_pgsql_user }}:{{ prometheus_pgsql_password }}@{{ prometheus_pgsql_host }}:{{ prometheus_pgsql_port }}/postgres?sslmode=disable
+
+# MongoDB Exporter
+MONGODB_URL=mongodb://{{ prometheus_mongodb_user }}:{{ prometheus_mongodb_password }}@{{ prometheus_mongodb_host }}:{{ prometheus_mongodb_port }}

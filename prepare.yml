@@ -1,0 +1,13 @@
+---
+- name: "Prepare Satellite service for Watch My Sat"
+  hosts: satellite 
+  vars_files:
+    - watch_my_sat.variables
+  roles:
+    # - watchmysat-postgresql
+  tasks: 
+    - name: Generate Podman variables file
+      delegate_to: localhost
+      template:
+        src: templates/podman_variables.j2
+        dest: variables.env

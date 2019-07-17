@@ -12,6 +12,7 @@ grafana_admin_password: secret
 # Postgres Exporter
 #postgres_exporter_login: postgres
 #postgres_exporter_password: password
+#postgres_exporter_port: 9187
 
 
 ############################################

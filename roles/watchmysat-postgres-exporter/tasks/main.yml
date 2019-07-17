@@ -1,17 +1,3 @@
-- name: Install EPEL Repo
-  yum:
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
-    state: present
-  tags:
-    - watchmysat_postgres_exporter
-
-- name: Install EPEL GPG Key
-  rpm_key:
-    key: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
-    state: present
-  tags:
-    - watchmysat_postgres_exporter
-
 - name: Install Golang package
   package:
     name: golang-bin

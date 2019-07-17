@@ -1,0 +1,20 @@
+- name: Check if EPEL is configured
+  stat:
+    path: /etc/yum.repos.d/epel.repo
+  register: epel_repo_result
+
+- name: Install EPEL Repo
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+    state: present
+  when: not epel_repo_result.stat.exists
+  tags:
+    - watchmysat_epel
+
+- name: Install EPEL GPG Key
+  rpm_key:
+    key: "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
+    state: present
+  when: not epel_repo_result.stat.exists
+  tags:
+    - watchmysat_epel

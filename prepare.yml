@@ -5,6 +5,7 @@
     - watch_my_sat.variables
   roles:
     # - watchmysat-postgresql
+    - watchmysat-node-exporter
   tasks: 
     - name: Generate Podman variables file
       delegate_to: localhost

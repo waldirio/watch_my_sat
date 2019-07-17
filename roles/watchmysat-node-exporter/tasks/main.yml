@@ -1,0 +1,12 @@
+---
+- name: Configure Prometheus Node Exporter repository on RHEL7
+  shell: curl -Lo /etc/yum.repos.d/_copr_ibotty-prometheus-exporters.repo https://copr.fedorainfracloud.org/coprs/ibotty/prometheus-exporters/repo/epel-7/ibotty-prometheus-exporters-epel-7.repo
+  tags:
+    - watchmysat_node_exporter
+
+- name: Install Prometheus Node Exporter package
+  package:
+    name: node_exporter
+    state: present
+  tags:
+    - watchmysat_node_exporter

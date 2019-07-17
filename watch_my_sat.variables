@@ -9,6 +9,10 @@ prometheus_node_exporter_port: 9100
 # Grafana Admin Password
 grafana_admin_password: secret
 
+# Postgres Exporter
+#postgres_exporter_login: postgres
+#postgres_exporter_password: password
+
 
 ############################################
 # PostgreSQL Foreman credentials

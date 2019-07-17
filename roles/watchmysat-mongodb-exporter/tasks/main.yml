@@ -1,0 +1,41 @@
+- name: Install glide package
+  package:
+    name: glide
+    state: present
+  tags:
+    - watchmysat_mongodb_exporter
+
+- name: Download MongoDB Exporter
+  shell: go get -u -d {{ mongodb_exporter_url }}
+  tags:
+    - watchmysat_mongodb_exporter
+
+- name: Install MongoDB Exporter
+  shell: GOPATH=/root/go make build
+  args:
+    chdir: "{{ gopath }}/src/{{ mongodb_exporter_url }}"
+  tags:
+    - watchmysat_mongodb_exporter
+
+- name: Deploy MongoDB Exporter systemd service
+  template:
+    src: templates/mongodb_exporter.service.j2
+    dest: /usr/lib/systemd/system/mongodb_exporter.service
+  tags:
+    - watchmysat_mongodb_exporter
+
+- name: Deploy MongoDB Exporter systemd enviroment files
+  template:
+    src: templates/mongodb_exporter.j2
+    dest: /etc/sysconfig/mongodb_exporter
+  tags:
+    - watchmysat_mongodb_exporter
+
+- name: Enable MongoDB Exporter
+  systemd:
+    state: restarted
+    name: mongodb_exporter
+    enabled: yes
+    daemon_reload: yes
+  tags:
+    - watchmysat_mongodb_exporter

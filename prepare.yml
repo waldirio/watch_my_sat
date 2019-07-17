@@ -7,15 +7,22 @@
     # - watchmysat-postgresql
     - watchmysat-postgres-exporter
     - watchmysat-node-exporter
+    - watchmysat-mongodb-exporter
   tasks: 
     - name: Generate Container variables.env
       delegate_to: localhost
+      become: false
       template:
         src: templates/variables.env.j2
         dest: variables.env
+      tags:
+        - preparation
 
     - name: Generate Prometheus Docker templates
       delegate_to: localhost
+      become: false
       template:
         src: templates/docker/prometheus/prometheus.yml.j2
         dest: templates/docker/prometheus/prometheus.yml
+      tags:
+        - preparation

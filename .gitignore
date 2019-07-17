@@ -1,0 +1,4 @@
+variables.env
+
+# ignore templates created by Ansible
+templates/docker/*/*.yml

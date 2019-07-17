@@ -1,0 +1,20 @@
+---
+- name: "Prepare Satellite service for Watch My Sat"
+  hosts: satellite 
+  vars_files:
+    - watch_my_sat.variables
+  roles:
+    # - watchmysat-postgresql
+    - watchmysat-node-exporter
+  tasks: 
+    - name: Generate Container variables.env
+      delegate_to: localhost
+      template:
+        src: templates/variables.env.j2
+        dest: variables.env
+
+    - name: Generate Prometheus Docker templates
+      delegate_to: localhost
+      template:
+        src: templates/docker/prometheus/prometheus.yml.j2
+        dest: templates/docker/prometheus/prometheus.yml

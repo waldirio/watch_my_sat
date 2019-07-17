@@ -1,0 +1,43 @@
+version: '3'
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+
+networks:
+  watchmysat-net:
+
+services:
+
+  prometheus:
+    restart: always
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    env_file:
+      - variables.env
+    networks:
+      - watchmysat-net
+    volumes:
+      - ./templates/docker/prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+
+  grafana:
+    restart: always
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000 
+    env_file:
+      - variables.env
+    networks:
+      - watchmysat-net
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./templates/docker/grafana/provisioning/:/etc/grafana/provisioning/

@@ -1,3 +1,16 @@
+# Docker
+##############
+#satellite_server: satellite.example.com
+satellite_server: 10.10.177.185 
+
+# Prometheus Node Exporter Port
+prometheus_node_exporter_port: 9100
+
+# Grafana Admin Password
+grafana_admin_password: secret
+
+
+############################################
 # PostgreSQL Foreman credentials
 pgsql_foreman_host: 192.168.1.1
 pgsql_foreman_port: 5432
@@ -11,7 +24,6 @@ pgsql_candlepin_port: 5432
 pgsql_candlepin_database: candlepin
 pgsql_candlepin_user: watch_my_sat_candlepin
 pgsql_candlepin_password: secret
-
 
 ## Prometheus PostgreSQL Exporter
 prometheus_pgsql_user: postgres

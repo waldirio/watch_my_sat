@@ -17,3 +17,11 @@
     state: present
   tags:
     - watchmysat_node_exporter
+
+- name: Enable Prometheus Node Exporter on boot and start it 
+  service:
+    name: node_exporter 
+    enabled: yes
+    state: started
+  tags:
+    - watchmysat_node_exporter

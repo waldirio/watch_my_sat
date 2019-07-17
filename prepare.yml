@@ -7,8 +7,14 @@
     # - watchmysat-postgresql
     - watchmysat-node-exporter
   tasks: 
-    - name: Generate Podman variables file
+    - name: Generate Container variables.env
       delegate_to: localhost
       template:
-        src: templates/podman_variables.j2
+        src: templates/variables.env.j2
         dest: variables.env
+
+    - name: Generate Prometheus Docker templates
+      delegate_to: localhost
+      template:
+        src: templates/docker/prometheus/prometheus.yml.j2
+        dest: templates/docker/prometheus/prometheus.yml

@@ -1,0 +1,11 @@
+[Unit]
+Description=Postgres Exporter
+
+[Service]
+User=root
+EnvironmentFile=/etc/sysconfig/postgres_exporter
+ExecStart=/root/go/src/github.com/wrouesnel/postgres_exporter/postgres_exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

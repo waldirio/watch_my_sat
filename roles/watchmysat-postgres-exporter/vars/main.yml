@@ -1,0 +1,9 @@
+---
+gopath: /root/go
+magefile_url: github.com/magefile/mage
+postgres_exporter_url: github.com/wrouesnel/postgres_exporter
+postgres_exporter_login: postgres
+postgres_exporter_password: password
+postgres_exporter_host: localhost
+postgres_exporter_port: 5432
+postgres_exporter_dbname: postgres

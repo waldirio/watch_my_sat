@@ -5,6 +5,7 @@
     - watch_my_sat.variables
   roles:
     # - watchmysat-postgresql
+    - watchmysat-postgres-exporter
     - watchmysat-node-exporter
   tasks: 
     - name: Generate Container variables.env

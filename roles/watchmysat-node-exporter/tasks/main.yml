@@ -1,6 +1,13 @@
 ---
 - name: Configure Prometheus Node Exporter repository on RHEL7
-  shell: curl -Lo /etc/yum.repos.d/_copr_ibotty-prometheus-exporters.repo https://copr.fedorainfracloud.org/coprs/ibotty/prometheus-exporters/repo/epel-7/ibotty-prometheus-exporters-epel-7.repo
+  yum_repository:
+    name: prometheus-exporter
+    description: Copr repo for prometheus-exporters owned by ibotty
+    file: _copr_ibotty-prometheus-exporters
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/ibotty/prometheus-exporters/epel-7-$basearch
+    gpgcheck: no
+    enabled: yes
+    skip_if_unavailable: yes
   tags:
     - watchmysat_node_exporter
 

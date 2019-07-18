@@ -19,7 +19,7 @@ systemctl start docker
 setenforce 0
 sed -i 's/^SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
 ```
-Note. At this moment, will be necessary switch SELINUX to permissive.
+Note. At this moment, will be necessary to change SELINUX to permissive.
 
 - Let's create the Monitoring user
 ```

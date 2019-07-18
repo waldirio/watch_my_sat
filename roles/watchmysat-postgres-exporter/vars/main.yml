@@ -6,6 +6,6 @@ postgres_exporter_login: postgres
 postgres_exporter_password: password
 postgres_exporter_host: localhost
 postgres_exporter_port: 9187
-postgres_port: 5321
+postgres_port: 5432
 postgres_exporter_dbname: postgres
 

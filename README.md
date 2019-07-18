@@ -103,7 +103,7 @@ rm -rf /var/lib/docker/volumes/watch_my_sat_*
 ```
 tar xvf watch_my_sat_data_bck.tar -C /
 ```
-5. Now, you are good to go and start everything
+5. Now as monitor user you are good to go and start everything
 ```
 cd scripts
 ./watchmysat stop

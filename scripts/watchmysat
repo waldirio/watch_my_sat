@@ -1,0 +1,26 @@
+#!/bin/bash
+
+LOG="./logs/info.log"
+
+
+case $1 in
+	start)
+		echo "Starting"
+		docker-compose --no-ansi -f ../docker-compose.yml up &>>$LOG &
+		;;
+	stop)
+		echo "Stopping"
+		docker-compose --no-ansi -f ../docker-compose.yml down &>>$LOG &
+		;;
+	status)
+		count=$(docker ps | grep -E '(grafana/grafana|prom/prometheus)' | wc -l)
+    if [ $count -eq 2 ]; then
+      echo "Running"
+    else
+      echo "Nothing running"
+    fi
+		;;
+  *)
+    echo $"Usage: $0 {start|stop|status}"
+    exit 1
+esac

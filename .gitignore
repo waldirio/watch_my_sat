@@ -2,3 +2,6 @@ variables.env
 
 # ignore templates created by Ansible
 templates/docker/*/*.yml
+
+# ignore launch logs
+scripts/logs/*

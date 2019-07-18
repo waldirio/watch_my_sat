@@ -81,3 +81,14 @@ cd scripts
 cd scripts
 ./watchmysat status
 ```
+## Backup and Restore Process
+
+- To Backup All the Historical Information (as root)
+```
+tar cvf watch_my_sat_data_bck.tar /var/lib/docker/volumes/watch_my_sat_*
+```
+
+- To Restore All the Historical Information (as root)
+```
+tar xvf watch_my_sat_data_bck.tar -C /
+```

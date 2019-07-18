@@ -14,11 +14,11 @@ case $1 in
 		;;
 	status)
 		count=$(docker ps | grep -E '(grafana/grafana|prom/prometheus)' | wc -l)
-    if [ $count -eq 2 ]; then
-      echo "Running"
-    else
-      echo "Nothing running"
-    fi
+		if [ $count -eq 2 ]; then
+			echo "Running"
+		else
+			echo "Nothing running"
+		fi
 		;;
   *)
     echo $"Usage: $0 {start|stop|status}"

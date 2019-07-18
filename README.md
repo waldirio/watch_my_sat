@@ -88,7 +88,23 @@ cd scripts
 tar cvf watch_my_sat_data_bck.tar /var/lib/docker/volumes/watch_my_sat_*
 ```
 
-- To Restore All the Historical Information (as root)
+Let's suppose you are restoring the data on a new machine, to keep the integrity will be necessary some steps before
+1. Run the steps above to prepare the environment
+2. Stop the process using the command below (as monitor user)
+```
+cd scripts
+./watchmysat stop
+```
+3. As root, remove the current DB information
+```
+rm -rf /var/lib/docker/volumes/watch_my_sat_*
+```
+4. Restore the data from your backup, for example `watch_my_sat_data_bck.tar` 
 ```
 tar xvf watch_my_sat_data_bck.tar -C /
+```
+5. Now, you are good to go and start everything
+```
+cd scripts
+./watchmysat stop
 ```

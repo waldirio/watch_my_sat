@@ -4,6 +4,7 @@
 ```
 echo "alter user postgres with password 'password';" | su - postgres -c psql
 ```
+
 - Some pre requirements on the Monitoring server (RHEL machine)
 ```
 # subscription-manager repos --enable rhel-7-server-ansible-2-rpms
@@ -27,27 +28,31 @@ Note. At this moment, will be necessary switch SELINUX to permissive.
 # gpasswd -a monitor docker
 # systemctl restart docker
 ```
+
 - Cloning the WatchMySat Project to the monitoring machine
 ```
 # su - monitor
 $ git clone https://github.com/waldirio/watch_my_sat.git
 $ cd watch_my_sat
 ```
+
 - Configuring the `postgres_exporter_password` at `watch_my_sat.variables`
 ```
 postgres_exporter_password: password
 ```
-- Configuring the `inventory` file
-```
+
 - Configuring the `satellite_server` at `watch_my_sat.variables`
 ```
 satellite_server: SAT_FQDN_HERE
 ```
+
+- Configuring the `inventory` file
+```
 $ cat inventory 
-## Entry your Satellite server here
 [satellite]
 SAT_FQDN_HERE
 ```
+
 - Runnining the playbook ping to test the connection
 ```
 $ ansible-playbook ping.yml
@@ -58,16 +63,19 @@ If fail, please generate the ssh key using the command `$ ssh-keygen` and then c
 ```
 $ ansible-playbook prepare.yml
 ```
+
 - Starting the suite
 ```
 $ cd scripts
 $ ./watchmysat start
 ```
+
 - Stopping the suite
 ```
 $ cd scripts
 $ ./watchmysat stop
 ```
+
 - Checking the current status
 ```
 $ cd scripts

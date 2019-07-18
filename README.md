@@ -7,26 +7,26 @@ echo "alter user postgres with password 'password';" | su - postgres -c psql
 
 - Some pre requirements on the Monitoring server (RHEL machine)
 ```
-# subscription-manager repos --enable rhel-7-server-ansible-2-rpms
-# subscription-manager repos --enable rhel-7-server-extras-rpms
-# yum install git -y
-# yum install ansible -y
-# yum install docker -y
-# curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-# chmod +x /usr/local/bin/docker-compose
-# systemctl enable docker
-# systemctl start docker
-# setenforce 0
-# sed -i 's/^SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
+subscription-manager repos --enable rhel-7-server-ansible-2-rpms
+subscription-manager repos --enable rhel-7-server-extras-rpms
+yum install git -y
+yum install ansible -y
+yum install docker -y
+curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+systemctl enable docker
+systemctl start docker
+setenforce 0
+sed -i 's/^SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
 ```
 Note. At this moment, will be necessary switch SELINUX to permissive.
 
 - Let's create the Monitoring user
 ```
-# useradd monitor
-# groupadd docker
-# gpasswd -a monitor docker
-# systemctl restart docker
+useradd monitor
+groupadd docker
+gpasswd -a monitor docker
+systemctl restart docker
 ```
 
 - Cloning the WatchMySat Project to the monitoring machine
@@ -66,18 +66,18 @@ $ ansible-playbook prepare.yml
 
 - Starting the suite
 ```
-$ cd scripts
-$ ./watchmysat start
+cd scripts
+./watchmysat start
 ```
 
 - Stopping the suite
 ```
-$ cd scripts
-$ ./watchmysat stop
+cd scripts
+./watchmysat stop
 ```
 
 - Checking the current status
 ```
-$ cd scripts
-$ ./watchmysat status
+cd scripts
+./watchmysat status
 ```

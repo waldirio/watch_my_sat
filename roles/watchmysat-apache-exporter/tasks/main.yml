@@ -1,0 +1,43 @@
+- name: Enable Apache server-status
+  template:
+    src: templates/server-status.conf.j2
+    dest: /etc/httpd/conf.d/server-status.conf
+  notify:
+    - Reload Apache
+  tags:
+    - watchmysat_apache_exporter
+
+- name: Install Golang package
+  package:
+    name: golang-bin
+    state: present
+  tags:
+    - watchmysat_apache_exporter
+
+- name: Download Go {{ repo_name }}
+  shell: go get {{ repo_url }}
+  tags:
+    - watchmysat_apache_exporter
+
+- name: Deploy {{ friendly_name }} systemd service
+  template:
+    src: templates/{{ repo_name }}.service.j2
+    dest: /usr/lib/systemd/system/{{ repo_name }}.service
+  tags:
+    - watchmysat_apache_exporter
+
+- name: Deploy {{ friendly_name }} systemd enviroment files
+  template:
+    src: templates/{{ repo_name }}.j2
+    dest: /etc/sysconfig/{{ repo_name }}
+  tags:
+    - watchmysat_apache_exporter
+
+- name: Enable {{ friendly_name }}
+  systemd:
+    state: restarted
+    name: "{{ repo_name }}"
+    enabled: yes
+    daemon_reload: yes
+  tags:
+    - watchmysat_apache_exporter

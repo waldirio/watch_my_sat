@@ -4,4 +4,4 @@ variables.env
 templates/docker/*/*.yml
 
 # ignore launch logs
-scripts/logs/*
+scripts/logs/info.log

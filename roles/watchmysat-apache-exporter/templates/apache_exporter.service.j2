@@ -1,0 +1,11 @@
+[Unit]
+Description=Postgres Exporter
+
+[Service]
+User=root
+EnvironmentFile=/etc/sysconfig/apache_exporter
+ExecStart=/root/go/bin/apache_exporter $OPTIONS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

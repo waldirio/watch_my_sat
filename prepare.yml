@@ -8,6 +8,7 @@
     - watchmysat-postgres-exporter
     - watchmysat-node-exporter
     - watchmysat-mongodb-exporter
+    - watchmysat-apache-exporter
   tasks: 
     - name: Generate Container variables.env
       delegate_to: localhost

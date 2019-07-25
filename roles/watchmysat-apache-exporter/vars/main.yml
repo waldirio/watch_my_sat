@@ -1,0 +1,6 @@
+---
+gopath: /root/go
+friendly_name: Apache Exporter
+repo_name: apache_exporter
+apache_exporter_port: 9117
+repo_url: github.com/neezgee/apache_exporter

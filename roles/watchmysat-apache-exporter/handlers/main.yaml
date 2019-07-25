@@ -1,0 +1,7 @@
+---
+- name: Reload Apache
+  service:
+    name: httpd
+    state: restarted
+  tags:
+    - watchmysat_apache_exporter

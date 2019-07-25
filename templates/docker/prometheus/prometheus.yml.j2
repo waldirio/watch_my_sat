@@ -46,3 +46,7 @@ scrape_configs:
   - job_name: 'mongodb_exporter'
     static_configs:
     - targets: ['{{ satellite_server }}:{{ mongodb_exporter_port }}']
+
+  - job_name: 'apache_exporter'
+    static_configs:
+    - targets: ['{{ satellite_server }}:{{ apache_exporter_port }}']
